@@ -1,29 +1,32 @@
 package com.apm.completableFuture;
 
+import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 
 import static java.lang.Thread.sleep;
 
 public class CompletableFutureTest {
 
-  private static void printMultiplicationSync(int num1, int num2) {
-    getNumberAfterDelay(num1)
+  private static CompletableFuture<?> printMultiplicationSync(int num1, int num2) {
+    return
+      getNumberAfterDelay(num1)
       .thenCombine(getNumberAfterDelay(num2), CompletableFutureTest::multiply)
       .thenAccept(multResult -> System.out.println("The result is " + multResult));
   }
 
-  private static void printMultiplicationSync(int num1, int num2, int num3) {
-    getNumberAfterDelay(num1)
+  private static CompletableFuture<Void> printMultiplicationSync(int num1, int num2, int num3) {
+    return
+      getNumberAfterDelay(num1)
       .thenCombine(getNumberAfterDelay(num2), CompletableFutureTest::multiply)
       .thenCombine(getNumberAfterDelay(num3), CompletableFutureTest::multiply)
       .thenAccept(multResult -> System.out.println("The result is " + multResult));
   }
 
-  private static void printMultiplicationAsync(int num1, int num2) {
+/*  private static CompletableFuture<Void> printMultiplicationAsync(int num1, int num2) {
     getNumberAfterDelay(num1)
       .thenCombineAsync(getNumberAfterDelay(num2), CompletableFutureTest::multiply)
       .thenAccept(multResult -> System.out.println("The result is " + multResult));
-  }
+  }*/
 
   private static CompletableFuture<Integer> getNumberAfterDelay(int num) {
     return CompletableFuture.supplyAsync(() -> {
@@ -42,14 +45,20 @@ public class CompletableFutureTest {
   public static void main(String[] args) {
 
     System.out.println("Trying sync with 2 numbers ...");
-    printMultiplicationSync(5, 10);
+    CompletableFuture<?> first = printMultiplicationSync(5, 10);
 
     System.out.println("Trying sync with 3 numbers ...");
-    printMultiplicationSync(6, 18, 12);
+    CompletableFuture<?> second = printMultiplicationSync(6, 18, 12);
+
+    System.out.println("Waiting for CompletableFutures");
+    first.join();
+    second.join();
+    System.out.println("All CompletableFutures Done");
 
     //System.out.println("Trying async ...");
     //printMultiplicationAsync(5, 10);
 
+    //try { sleep(60 * 1000) ; } catch (Exception e) { System.out.println("Caught Exception"); e.printStackTrace();}
   }
 }
 
