@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Syntax</title>
+</head>
+<body>
+
+  <hr><h5>Java 8</h5><hr>
+  <ul>
+    <li>As of Java SE 8, you are allowed to add static methods to interfaces.</li>
+  </ul>
+
+  <hr><h5>Data Type Sizes</h5><hr>
+  <table class="table-sm table-striped">
+    <tr><th>Data Type</th><th>Data Size</th></tr>
+    <tr><td>byte</td><td>1 byte</td></tr>
+    <tr><td>short</td><td>2 bytes</td></tr>
+    <tr><td>int</td><td>4 bytes</td></tr>
+    <tr><td>long</td><td>8 bytes</td></tr>
+    <tr><td>float</td><td>4 bytes</td></tr>
+    <tr><td>double</td><td>8 bytes</td></tr>
+  </table>
+
+  <hr><h5>Clone</h5><hr>
+  Clone is like C++'s copy constructor
+  <br>The clone method is declared <u>protected in the Object class</u>, so that your code can’t simply call anObject.clone()
+  <br>The Cloneable interface is one of a handful of tagging interfaces that Java provides.
+  <br>A tagging interface has no methods; its only purpose is to allow the use of instanceof in a type inquiry.
+  <br>All array types have a clone method that is public, not protected.You can use it to make a new array that contains copies of all elements.
+
+  <hr><h5>Equals/Hashcode</h5><hr>
+  Your defnitions of equals and hashCode must be compatible: If x.equals(y) is true, then x.hashCode() must return the same value as y.hashCode()
+  <br>If you have fields of an array type, you can use the static Arrays.hashCode method to compute a hash code composed of the hash codes of the array elements.
+
+  <hr><h5>Diamond Syntax</h5><hr>
+  As of Java SE 7, you can omit the type parameter on the right-hand side: <pre>ArrayList<Employee> staff = new ArrayList<>();</pre>
+  This is called the “diamond” syntax because the empty brackets <> resemble a diamond.
+
+  <hr><h5>Interfaces</h5><hr>
+  <ul>
+    <li>All methods of an interface are automatically public. For that reason, it is not necessary to supply the keyword public when declaring a method in an interface.</li>
+    <li>Interfaces can also <u>define constants.</u></li>
+    <li>Just as you use instanceof to check whether an object is of a specifc class, you can use instanceof to check whether an object implements an interface.</li>
+    <li>As of Java SE 8, you are allowed to add static methods to interfaces.</li>
+    <li>You can supply a default implementation for any interface method. You must tag such a method with the default modifer.</li>
+  </ul>
+
+  <hr><h5>Default Method Conflicts</h5><hr>
+  What happens if the exact same method is defned as a default method in one interface and then again as a method of a superclass or another interface?
+  <ol>
+    <li><b>Superclasses win.</b> If a superclass provides a concrete method, default methods with the same name and parameter types are simply ignored.</li>
+    <li><b>Interfaces clash.</b> If a superinterface provides a default method, and another interface supplies a method with the same name and parameter types (default or not), then you must resolve the conﬂict by overriding that method.</li>
+    <li>You can never make a default method that redefnes one of the methods in the Object class. As a consequence of the “classes win” rule, such a method could never win against Object.toString or Objects.equals.</li>
+  </ol>
+
+  <hr><h5>Comparable vs Comparator</h5><hr>
+  A comparable object is capable of comparing itself with another object. The class itself must implements the java.lang.Comparable interface to compare its instances.
+  <br>Unlike Comparable, Comparator is external to the element type we are comparing. It’s a separate class. We create multiple separate classes (that implement Comparator) to compare by different members.
+  <br>
+  <pre>
+    class Movie implements Comparable<Movie>
+    {
+      public int compareTo(Movie m) { return this.year - m.year; }  // Compare SELF by YEAR
+    }
+
+    class RatingCompare implements Comparator<Movie>
+    {
+      public int compare(Movie m1, Movie m2) { // Compare by Rating }
+    }
+
+    class NameCompare implements Comparator<Movie>
+    {
+      public int compare(Movie m1, Movie m2) { // Compare by Name }
+    }  </pre>
+
+  <hr><h5>Lambda</h5><hr>
+  A lambda expression is a block of code that you can pass around so it can be executed later, once or multiple times.
+  <ul>
+    <li>If a lambda expression has no parameters, you still supply empty parentheses, just as with a parameterless method</li>
+    <li>If the parameter types of a lambda expression can be inferred, you can omit them.</li>
+    <li>You never specify the result type of a lambda expression. It is always inferred from context.</li>
+    <li>You can supply a lambda expression whenever an object of an interface with a single abstract method is expected. Such an interface is called a <u>functional interface</u>.</li>
+    <li>Sometimes, there is already a method that carries out exactly the action that you’d like to pass on to some other code.
+      Of course, you could call that method in a lambda expression. But you can also pass the method with a <u>method reference</u>: <pre>Timer t = new Timer(1000, System.out::println);</pre>The expression System.out::println is a method reference that is equivalent to the lambda expression x -> System.out.println(x).</li>
+    <li>Constructor references are just like method references, except that the name of the method is new. For example, Person::new is a reference to a Person constructor.</li>
+    <li>You can form constructor references with array types. For example, int[]::new is a constructor reference with one parameter: the length of the array. It is equivalent to the lambda expression x -> new int[x].</li>
+  </ul>
+
+  <hr><h5>Functional Interfaces in Java</h5><hr>
+  <table class="table-sm table-striped">
+    <tr><th>Class</th><th>Method</th></tr>
+    <tr><td>Runnable</td><td>void run()</td></tr>
+    <tr><td>Supplier&lt;T&gt;</td><td>T get()</td></tr>
+    <tr><td>Consumer&lt;T&gt;</td><td>void accept(T)</td></tr>
+    <tr><td>BiConsumer&lt;T, U&gt;</td><td>void accept(T,U)</td></tr>
+    <tr><td>Function&lt;T, R&gt;</td><td>R apply(T)</td></tr>
+    <tr><td>BiFunction&lt;T, U, R&gt;</td><td>R apply(T,U)</td></tr>
+    <tr><td>UnaryOperator&lt;T&gt;</td><td>T apply(T)</td></tr>
+    <tr><td>BinaryOperator&lt;T&gt;</td><td>T apply(T,T)</td></tr>
+    <tr><td>Predicate&lt;T&gt;</td><td>boolean test(T)</td></tr>
+    <tr><td>BiPredicate&lt;T, U&gt;</td><td>boolean test(T,U)</td></tr>
+  </table>
+
+  <hr><h5>@FunctionalInterface</h5><hr>
+  If you design your own interface with a single abstract method, you can tag it with the @FunctionalInterface annotation.
+  <br>This has two advantages. The compiler gives an error message if you accidentally add another nonabstract method. And the javadoc page includes a statement that your interface is a functional interface.
+  <br>It is not required to use the annotation. Any interface with a single abstract method is, by defnition, a functional interface.
+
+</body>
+</html>
