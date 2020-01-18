@@ -110,5 +110,35 @@
   <br>This has two advantages. The compiler gives an error message if you accidentally add another nonabstract method. And the javadoc page includes a statement that your interface is a functional interface.
   <br>It is not required to use the annotation. Any interface with a single abstract method is, by defnition, a functional interface.
 
+  <hr><h5>Exception Hierarchy</h5><hr>
+  There are two kinds of exceptions: unchecked exceptions and checked exceptions.
+  <br>With checked exceptions, the compiler checks that you provide a handler.
+  <br>However, many common exceptions, such as accessing a null reference, are unchecked. The compiler does not check whether you provided a handler for these errors—after all, you should spend your mental energy on avoiding these mistakes rather than coding handlers for them.
+  <br>
+  <ul>
+    <li>Throwable
+      <ul>
+        <li>Error (unchecked)
+          <ul>
+            <li>OutOfMemoryError</li>
+            <li>StackOverflowError</li>
+            <li><i>The Error hierarchy describes internal errors and resource exhaustion situations inside the Java runtime system. <u>You should not throw an object of this type.</u></i></li>
+          </ul>
+        </li>
+        <li>Exception (all checked except RuntimeException & its children)
+          <ul>
+            <li>IOException</li>
+            <li>RuntimeException (unchecked)
+              <ul>
+                <li>NullPointerException</li>
+                <li>ArrayIndexOutOfBoundsException</li>
+                <li><i>A RuntimeException happens because you made a programming error.</i></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </body>
 </html>
