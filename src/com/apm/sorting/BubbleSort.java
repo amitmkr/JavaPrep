@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class BubbleSort {
 
-  public static int Sort(int[] numbers) {
+   static int Sort(int[] numbers) {
     int totalNumbers = numbers.length;
     System.out.println("Starting Bubble Sort for: " + Arrays.toString(numbers));
 
