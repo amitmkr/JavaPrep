@@ -29,6 +29,8 @@ public class BubbleSort {
   public static void main(String[] args) {
     int[] numbers = { 23, 66, 9, 12, 87, 24, 2, 10 };
 
+    System.out.println("INITIAL: " + Arrays.toString(numbers));
+
     Sort(numbers);
 
     System.out.println("SORTED: " + Arrays.toString(numbers));
