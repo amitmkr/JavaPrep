@@ -1,4 +1,4 @@
-package com.apm.fillShape.model;
+package com.apm.coding_problems.fillShape.model;
 
 public class Canvas {
 

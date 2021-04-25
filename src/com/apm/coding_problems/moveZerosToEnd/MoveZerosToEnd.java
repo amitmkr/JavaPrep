@@ -1,4 +1,4 @@
-package com.apm.moveZerosToEnd;
+package com.apm.coding_problems.moveZerosToEnd;
 
 import java.util.Arrays;
 

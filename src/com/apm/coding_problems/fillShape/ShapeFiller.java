@@ -1,7 +1,7 @@
-package com.apm.fillShape;
+package com.apm.coding_problems.fillShape;
 
-import com.apm.fillShape.model.Canvas;
-import com.apm.fillShape.model.Vertex;
+import com.apm.coding_problems.fillShape.model.Canvas;
+import com.apm.coding_problems.fillShape.model.Vertex;
 
 public class ShapeFiller {
 
