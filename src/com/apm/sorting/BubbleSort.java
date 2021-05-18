@@ -4,7 +4,13 @@ import java.util.Arrays;
 
 public class BubbleSort {
 
-   static int Sort(int[] numbers) {
+  private static void swap(int[] numbers, int pos1, int pos2) {
+    int temp = numbers[pos1];
+    numbers[pos1] = numbers[pos2];
+    numbers[pos2] = temp;
+  }
+
+  static int Sort(int[] numbers) {
     int totalNumbers = numbers.length;
     System.out.println("Starting Bubble Sort for: " + Arrays.toString(numbers));
 
@@ -12,15 +18,13 @@ public class BubbleSort {
     for (int i=0; i<totalNumbers; i++) {
       for (int j=0; j<totalNumbers-i-1; j++) {
         if (numbers[j] > numbers[j+1]) {
-          int temp = numbers[j+1];
-          numbers[j+1] = numbers[j];
-          numbers[j] = temp;
+          swap(numbers, j, j+1);
         }
 
         System.out.println("(i=" + i + ",j=" + j + ") - " + Arrays.toString(numbers));
       }
 
-      System.out.println(("Interation " + i + ": " + Arrays.toString(numbers)));
+      System.out.println(("Iteration " + i + ": " + Arrays.toString(numbers)));
     }
 
     return 0;

@@ -4,23 +4,27 @@ import java.util.Arrays;
 
 public class SelectionSort {
 
+  private static void swap(int[] numbers, int pos1, int pos2) {
+    int temp = numbers[pos1];
+    numbers[pos1] = numbers[pos2];
+    numbers[pos2] = temp;
+  }
+
   public static int Sort(int[] numbers) {
     int totalNumbers = numbers.length;
     System.out.println("Starting Selection Sort for: " + Arrays.toString(numbers));
 
 
     for (int i=0; i<totalNumbers; i++) {
-      for (int j=i; j<totalNumbers; j++) {
+      for (int j=i+1; j<totalNumbers; j++) {
         if (numbers[i] > numbers[j]) {
-          int temp = numbers[i];
-          numbers[i] = numbers[j];
-          numbers[j] = temp;
+          swap(numbers, i, j);
         }
 
         System.out.println("(i=" + i + ",j=" + j + ") - " + Arrays.toString(numbers));
       }
 
-      System.out.println(("Interation " + i + ": " + Arrays.toString(numbers)));
+      System.out.println(("Iteration " + i + ": " + Arrays.toString(numbers)));
     }
 
     return 0;

@@ -19,7 +19,7 @@ public class InsertionSort {
 
         System.out.println("(i=" + i + ",j=" + j + ") - " + Arrays.toString(numbers));
       }
-      System.out.println(("Interation " + i + ": " + Arrays.toString(numbers)));
+      System.out.println(("Iteration " + i + ": " + Arrays.toString(numbers)));
     }
   }
 
