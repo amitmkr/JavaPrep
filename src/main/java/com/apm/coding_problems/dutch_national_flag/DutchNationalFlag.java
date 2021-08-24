@@ -52,6 +52,7 @@ public class DutchNationalFlag {
 
     for (int i=0, smaller=0; i<colors_pass2.size(); i++) {
       if (colors_pass2.get(i).ordinal() < pivot.ordinal()) {
+        System.out.println("SWAP: " + i + " <-> " + smaller);
         Collections.swap(colors_pass2, smaller, i);
         smaller++;
       }
@@ -60,6 +61,7 @@ public class DutchNationalFlag {
 
     for (int j=colors_pass2.size()-1, larger= colors_pass2.size()-1; j>=0; j--) {
       if (colors_pass2.get(j).ordinal() > pivot.ordinal()) {
+        System.out.println("SWAP: " + j + " <-> " + larger);
         Collections.swap(colors_pass2, larger, j);
         larger--;
       }
@@ -77,11 +79,13 @@ public class DutchNationalFlag {
          i < colors_try3.size() && i <= larger; ) {
       System.out.println("i="+i+" smaller="+smaller+" larger="+larger+" List:"+colors_try3);
       if (colors_try3.get(i).ordinal() < pivot.ordinal()) {
+        System.out.println("SWAP: " + i + " <-> " + smaller);
         Collections.swap(colors_try3, i, smaller);
         smaller++;
         i++;
       }
       else if (colors_try3.get(i).ordinal() > pivot.ordinal()) {
+        System.out.println("SWAP: " + i + " <-> " + larger);
         Collections.swap(colors_try3, i, larger);
         larger--;
       }
