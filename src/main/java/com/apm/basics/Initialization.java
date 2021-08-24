@@ -1,16 +1,20 @@
 package com.apm.basics;
 
+/*
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+ */
+
 import static com.apm.utils.Compare.*;
 
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+//@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class Initialization {
 
+  /*
   @Test
   void array_of_numbers_is_initialized_to_zero() {
     int[] intArray = new int[5];
@@ -19,6 +23,7 @@ public class Initialization {
       () -> assertEquals(0, intArray[4])
     );
   }
+   */
 
   public static void main(String[] args) {
 
