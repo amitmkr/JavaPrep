@@ -33,7 +33,9 @@ Oranges at (0,0) and (0,1) can't rot orange at
 (0,3).
 
 Your Task:
-You don't need to read or print anything, Your task is to complete the function orangesRotting() which takes grid as input parameter and returns the minimum time to rot all the fresh oranges. If not possible returns -1.
+You don't need to read or print anything,
+Your task is to complete the function orangesRotting() which takes grid as input parameter and returns the minimum time to rot all the fresh oranges.
+If not possible returns -1.
 
 
 Expected Time Compelxity: O(n*m)
