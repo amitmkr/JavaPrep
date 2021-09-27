@@ -1,7 +1,11 @@
 package com.apm.coding_problems.zigzag_string;
 
 /*
-The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+https://leetcode.com/problems/zigzag-conversion/
+
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+(you may want to display this pattern in a fixed font for better legibility)
 
 P   A   H   N
 A P L S I I G
@@ -12,7 +16,6 @@ Write the code that will take a string and make this conversion given a number o
 
 string convert(string s, int numRows);
  
-
 Example 1:
 
 Input: s = "PAYPALISHIRING", numRows = 3
@@ -42,11 +45,25 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-public class ZigzagString {
+// This solution uses O(N) space
+
+public class ZigzagString_Try1 {
   public static void main(String[] args) {
-    String str = "PAYPALISHIRING";
-    int numRows = 4;
-    System.out.println(getZigzagPattern(str, numRows));
+    verifyZigZagConversion("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR");
+    verifyZigZagConversion("PAYPALISHIRING", 4, "PINALSIGYAHRPI");
+    verifyZigZagConversion("ThisIsAVeryLongStringWrittenSpecificallyToTestASubstantiallyLongString", 12,
+      "TrsrhWiettiigtTASnsntoSggIieTunsrnyboAtSlsLVSpltyegeaalrnccnlyoiitaLfi");
+    verifyZigZagConversion("ThisIsAVeryLongStringWrittenSpecificallyToTestASubstantiallyLongString", 11,
+      "TgTLhnWyoyoiirlTlnsrilelgIttasaSsStctitAgeiAtrVnnfSnieoSiuanrLpcbtgyes");
+    verifyZigZagConversion("ThisIsAVeryLongStringWrittenSpecificallyToTestASubstantiallyLongString", 4,
+      "TAoiteaTutLrhsVLnrnitpccloeSbniyotiiIeygtgreSiilTsAsaalnSnsrSWnfyttlgg");
+  }
+
+  private static boolean verifyZigZagConversion(String input, int numRows, String expectedOutput) {
+    String output = getZigzagPattern(input, numRows);
+    boolean result = expectedOutput.equals(output);
+    System.out.println("Input=" + input + " Rows=" + numRows + " Expected=" + expectedOutput + " Output=" + output + " MATCH=" + result);
+    return result;
   }
 
   private static String getZigzagPattern(String str, int numRows) {
