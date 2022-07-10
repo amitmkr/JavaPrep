@@ -29,16 +29,49 @@ public class E_2_2_1_1_DupIntegers {
         long endBruteForce = System.currentTimeMillis();
         long timeBruteForce = endBruteForce - startBruteForce;
 
+        Arrays.sort(input);
+
         System.out.println("Finding dups optimized ...");
         long startOptimized = System.currentTimeMillis();
         long dupsOptimized = find_dups_optimized(input);
         long endOptimized = System.currentTimeMillis();
         long timeOptimized = endOptimized - startOptimized;
 
-        System.out.println("Dups. BruteForce=" + dupsBruteForce + " Optimized=" + dupsOptimized);
-        System.out.println("Time in millis. BruteForce=" + timeBruteForce
-                            + " Optimized=" + timeOptimized);
+        System.out.println("Finding dups optimized, O(1) space ...");
+        long startOptimizedNoSpace = System.currentTimeMillis();
+        long dupsOptimizedNoSpace = find_dups_optimized(input);
+        long endOptimizedNoSpace = System.currentTimeMillis();
+        long timeOptimizedNoSpace = endOptimizedNoSpace - startOptimizedNoSpace;
 
+
+        System.out.println("Dups. BruteForce=" + dupsBruteForce
+                            + " Optimized=" + dupsOptimized
+                            + " Optimized, O(1) space=" + dupsOptimizedNoSpace);
+        System.out.println("Time in millis. BruteForce=" + timeBruteForce
+                            + " Optimized=" + timeOptimized
+                            + " Optimized, O(1) space=" + timeOptimizedNoSpace);
+
+    }
+
+    private static int find_dups_optimized_o1_space(int[] input) {
+        Arrays.sort(input);
+
+        int numDups = 0;
+        int lastDup = -1;
+
+        int prevNum = input[0];
+        for (int i=1; i<input.length; i++) {
+            if (input[i] == prevNum) {
+                if (lastDup != prevNum) {
+                    numDups++;
+                    lastDup = prevNum;
+                }
+            }
+
+            prevNum = input[i];
+        }
+
+        return numDups;
     }
 
     private static int find_dups_optimized(int[] input) {
